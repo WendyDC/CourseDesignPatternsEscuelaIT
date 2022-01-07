@@ -6,6 +6,10 @@ import com.codewen.abstractFactory.Surgeon;
 import com.codewen.builder.BasicChef;
 import com.codewen.builder.GourmetChef;
 import com.codewen.builder.Person;
+import com.codewen.factoryMethod.CyclistDeliveryMan;
+import com.codewen.factoryMethod.MotorcyclistDeliveryMan;
+import com.codewen.prototype.Poem;
+import com.codewen.prototype.Poetry;
 import com.codewen.singleton.PrintConsole;
 
 public class main {
@@ -14,6 +18,8 @@ public class main {
 		runSingleton();
 		runAbstractfactory();
 		runBuilder();
+		runFactoryMethod();
+		runPrototype();
 	}
 	
 	public void runSingleton() {
@@ -52,9 +58,45 @@ public class main {
 		
 		printConsole.printSubTitle("Group 2. Gourmet");
 		GourmetChef gourmetChef = new GourmetChef();
-		person.eat(gourmetChef);
+		person.eat(gourmetChef);	
+	}
+	
+	private void runFactoryMethod() {
+		PrintConsole printConsole = PrintConsole.getInstance();
+		printConsole.printTitle("[Creation patterns] FactoryMethod");	
 		
+		printConsole.printSubTitle("Group 1. Bicycle");
+		CyclistDeliveryMan cycliteDeliveryMan = new CyclistDeliveryMan();
+		cycliteDeliveryMan.deliver();
 		
+		printConsole.printSubTitle("Group 2. Motorcycle");
+		MotorcyclistDeliveryMan  motorcyclistDeliveryMan  = new MotorcyclistDeliveryMan ();
+		motorcyclistDeliveryMan.deliver();
+	}
+	
+	private void runPrototype() {
+		PrintConsole printer = PrintConsole.getInstance();
+		printer.printTitle("[Creation patterns] Prototype");	
+		
+		Poet poet = new Poet();
+		Poetry poetry = new Poetry();
+		Poem requestedPoem;
+		
+		printer.printSubTitle("POET SELLING 'LA CASADA INFIEL'");
+		requestedPoem = poet.sell(poetry, "La Casada Infiel");
+		printer.printMessageLevel2("Hash code of the poem = " + requestedPoem.hashCode());
+		requestedPoem.recite();
+
+		printer.printSubTitle("POET SELLING 'POEMA XX'");
+		requestedPoem = poet.sell(poetry, "Poema XX");
+		printer.printMessageLevel2("Hash code of the poem = " + requestedPoem.hashCode());
+		requestedPoem.recite();
+
+		printer.printSubTitle("POET SELLING 'LA CASADA INFIEL'");
+		requestedPoem = poet.sell(poetry, "La Casada Infiel");
+		printer.printMessageLevel2("Hash code of the poem = " + requestedPoem.hashCode());
+		requestedPoem.recite();
+	
 	}
 
 	public static void main(String[] args) {
