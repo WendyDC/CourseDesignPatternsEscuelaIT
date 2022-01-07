@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author lesso
+ *
+ */
+module CourseDesignPatternsEscuelaIT {
+}
